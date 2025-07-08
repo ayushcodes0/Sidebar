@@ -1,5 +1,6 @@
-import  { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Search, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Edit, Trash2, Eye, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
+import './UserDashboardTable.css';
 
 interface User {
   id: number;
@@ -85,15 +86,15 @@ const UserDashboardTable = () => {
 
   const getSortIcon = (columnKey: keyof User) => {
     if (sortConfig.key !== columnKey) {
-      return <ArrowUpDown className="h-4 w-4 text-gray-400" />;
+      return <ArrowUpDown className="sort-icon" />;
     }
     if (sortConfig.direction === 'asc') {
-      return <ArrowUp className="h-4 w-4 text-blue-600" />;
+      return <ArrowUp className="sort-icon sort-icon-active" />;
     }
     if (sortConfig.direction === 'desc') {
-      return <ArrowDown className="h-4 w-4 text-blue-600" />;
+      return <ArrowDown className="sort-icon sort-icon-active" />;
     }
-    return <ArrowUpDown className="h-4 w-4 text-gray-400" />;
+    return <ArrowUpDown className="sort-icon" />;
   };
 
   const handleFirstPage = () => {
@@ -125,12 +126,12 @@ const UserDashboardTable = () => {
   };
 
   return (
-    <div className="w-full p-6 bg-white rounded-lg shadow-lg flex flex-col gap-2">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">User Dashboard</h2>
+    <div className="user-dashboard">
+      <h2 className="dashboard-title">User Dashboard</h2>
       
-      <div className="mb-6 relative">
-        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-          <Search className="h-5 w-5 text-gray-400" />
+      <div className="search-container">
+        <div className="search-icon-container">
+          <Search className="search-icon" />
         </div>
         <input
           type="text"
@@ -140,120 +141,118 @@ const UserDashboardTable = () => {
             setCurrentPage(1);
           }}
           placeholder="Search users..."
-          className=" pl-10 pr-4 py-2 w-full md:w-96 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
+          className="search-input"
         />
       </div>
 
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse">
+      <div className="table-responsive">
+        <table className="user-table">
           <thead>
-            <tr className="bg-gray-50 border-b border-gray-200">
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <tr className="table-header-row">
+              <th className="table-header-cell">
                 <button
                   onClick={() => handleSort('name')}
-                  className="flex items-center space-x-1 hover:text-gray-700 transition-colors"
+                  className="sort-button"
                 >
                   <span>Name</span>
                   {getSortIcon('name')}
                 </button>
               </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="table-header-cell">
                 <button
                   onClick={() => handleSort('email')}
-                  className="flex items-center space-x-1 hover:text-gray-700 transition-colors"
+                  className="sort-button"
                 >
                   <span>Email</span>
                   {getSortIcon('email')}
                 </button>
               </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="table-header-cell">
                 <button
                   onClick={() => handleSort('role')}
-                  className="flex items-center space-x-1 hover:text-gray-700 transition-colors"
+                  className="sort-button"
                 >
                   <span>Role</span>
                   {getSortIcon('role')}
                 </button>
               </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="table-header-cell">
                 <button
                   onClick={() => handleSort('status')}
-                  className="flex items-center space-x-1 hover:text-gray-700 transition-colors"
+                  className="sort-button"
                 >
                   <span>Status</span>
                   {getSortIcon('status')}
                 </button>
               </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="table-header-cell">
                 <button
                   onClick={() => handleSort('department')}
-                  className="flex items-center space-x-1 hover:text-gray-700 transition-colors"
+                  className="sort-button"
                 >
                   <span>Department</span>
                   {getSortIcon('department')}
                 </button>
               </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="table-header-cell">
                 <button
                   onClick={() => handleSort('joinDate')}
-                  className="flex items-center space-x-1 hover:text-gray-700 transition-colors"
+                  className="sort-button"
                 >
                   <span>Join Date</span>
                   {getSortIcon('joinDate')}
                 </button>
               </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="table-header-cell">
                 <button
                   onClick={() => handleSort('lastLogin')}
-                  className="flex items-center space-x-1 hover:text-gray-700 transition-colors"
+                  className="sort-button"
                 >
                   <span>Last Login</span>
                   {getSortIcon('lastLogin')}
                 </button>
               </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              <th className="table-header-cell">Actions</th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody>
             {currentData.map((user) => (
-              <tr key={user.id} className="hover:bg-gray-50 transition-colors">
-                <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{user.name}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{user.email}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{user.role}</td>
-                <td className="px-4 py-4 whitespace-nowrap">
-                  <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                    user.status === 'Active' 
-                      ? 'bg-green-100 text-green-800' 
-                      : 'bg-red-100 text-red-800'
+              <tr key={user.id} className="table-row">
+                <td className="table-cell table-cell-main">{user.name}</td>
+                <td className="table-cell table-cell-secondary">{user.email}</td>
+                <td className="table-cell table-cell-secondary">{user.role}</td>
+                <td className="table-cell">
+                  <span className={`status-badge ${
+                    user.status === 'Active' ? 'status-active' : 'status-inactive'
                   }`}>
                     {user.status}
                   </span>
                 </td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{user.department}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{user.joinDate}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{user.lastLogin}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm font-medium">
-                  <div className="flex space-x-2">
+                <td className="table-cell table-cell-secondary">{user.department}</td>
+                <td className="table-cell table-cell-secondary">{user.joinDate}</td>
+                <td className="table-cell table-cell-secondary">{user.lastLogin}</td>
+                <td className="table-cell">
+                  <div className="action-buttons">
                     <button
                       onClick={() => handleView(user.id)}
-                      className="text-blue-600 hover:text-blue-900 transition-colors"
+                      className="action-button view-button"
                       title="View"
                     >
-                      <Eye className="h-4 w-4" />
+                      <Eye className="action-icon" />
                     </button>
                     <button
                       onClick={() => handleEdit(user.id)}
-                      className="text-yellow-600 hover:text-yellow-900 transition-colors"
+                      className="action-button edit-button"
                       title="Edit"
                     >
-                      <Edit className="h-4 w-4" />
+                      <Edit className="action-icon" />
                     </button>
                     <button
                       onClick={() => handleDelete(user.id)}
-                      className="text-red-600 hover:text-red-900 transition-colors"
+                      className="action-button delete-button"
                       title="Delete"
                     >
-                      <Trash2 className="h-4 w-4" />
+                      <Trash2 className="action-icon" />
                     </button>
                   </div>
                 </td>
@@ -263,61 +262,45 @@ const UserDashboardTable = () => {
         </table>
       </div>
 
-      <div className="mt-6 flex items-center justify-between">
-        <div className="text-sm text-gray-700">
+      <div className="pagination-container">
+        <div className="pagination-info">
           Showing {startIndex + 1} to {Math.min(endIndex, sortedData.length)} of {sortedData.length} results
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="pagination-controls">
           <button
             onClick={handleFirstPage}
             disabled={currentPage === 1}
-            className={`p-2 rounded-md ${
-              currentPage === 1
-                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50'
-            } transition-colors`}
+            className={`pagination-button ${currentPage === 1 ? 'pagination-button-disabled' : ''}`}
             title="First page"
           >
-            <ChevronsLeft className="h-4 w-4" />
+            <ChevronsLeft className="pagination-icon" />
           </button>
           <button
             onClick={handlePrevPage}
             disabled={currentPage === 1}
-            className={`p-2 rounded-md ${
-              currentPage === 1
-                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50'
-            } transition-colors`}
+            className={`pagination-button ${currentPage === 1 ? 'pagination-button-disabled' : ''}`}
             title="Previous page"
           >
-            <ChevronLeft className="h-4 w-4" />
+            <ChevronLeft className="pagination-icon" />
           </button>
-          <span className="px-4 py-2 text-sm text-gray-700">
+          <span className="page-count">
             Page {currentPage} of {totalPages || 1}
           </span>
           <button
             onClick={handleNextPage}
             disabled={currentPage === totalPages || totalPages === 0}
-            className={`p-2 rounded-md ${
-              currentPage === totalPages || totalPages === 0
-                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50'
-            } transition-colors`}
+            className={`pagination-button ${currentPage === totalPages || totalPages === 0 ? 'pagination-button-disabled' : ''}`}
             title="Next page"
           >
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="pagination-icon" />
           </button>
           <button
             onClick={handleLastPage}
             disabled={currentPage === totalPages || totalPages === 0}
-            className={`p-2 rounded-md ${
-              currentPage === totalPages || totalPages === 0
-                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50'
-            } transition-colors`}
+            className={`pagination-button ${currentPage === totalPages || totalPages === 0 ? 'pagination-button-disabled' : ''}`}
             title="Last page"
           >
-            <ChevronsRight className="h-4 w-4" />
+            <ChevronsRight className="pagination-icon" />
           </button>
         </div>
       </div>
