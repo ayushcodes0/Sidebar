@@ -1,0 +1,204 @@
+.shell{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    font-family: Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.sidebar{
+    background: linear-gradient(to bottom, #030b4f, #21288b);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 20%;
+    height: 100vh;
+    position: relative;
+    gap: 20px;
+    padding: 15px 0;
+    z-index: 99;
+}
+
+.sidebar h2{
+    font-size: 24px;
+    padding: 0 40px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 5px;
+}
+
+.bulb-icon {
+ color: rgb(255, 186, 59);
+}
+
+.nav-links{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 10px;
+}
+
+.link a {
+  color: inherit;         
+  text-decoration: none;    
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 40px;
+  border-radius: 50px;
+
+}
+
+.link a span{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-icons{
+    color: rgb(200, 200, 200);
+}
+
+.link a.active {
+  font-weight: bold;      
+  color: #191919;   
+  background-color: white;   
+  transition: all ease .3; 
+
+  .nav-icons{
+    color: black;
+  }
+}
+
+
+.sidebar .link{
+    color: rgba(255, 255, 255, 0.8);
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+    transition: all ease .3s;
+}
+
+
+.panel{
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+}
+
+.panel .nav{
+    width: 100%;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+.nav-elements{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 20px;
+}
+
+
+.nav-elements img{
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.bell-icon{
+    font-size: 24px;
+    color: rgb(255, 186, 59);
+    cursor: pointer;
+}
+
+.panel-screen{
+    padding: 20px;
+}
+
+.nav-left{
+    display: none;
+}
+
+.nav-left .sidebar-icon{
+    font-size: 24px;
+}
+
+.nav-right{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    position: relative;
+}
+
+.hover-text{
+    position: absolute;
+    background-color: rgb(226, 226, 226);
+    border-radius: 50px;
+    padding: 2px 12px;
+    top: 35px;
+}
+
+.notification-hover{
+    left: -85px;
+    display: none;
+}
+
+.bell-icon-container:hover .notification-hover{
+    display: block;
+    transition: all ease .3s;
+}
+
+.profile-hover{
+    left: 0;
+    display: none;
+}
+
+.profile-image-container:hover .profile-hover{
+    display: block;
+    transition: all ease .3s;
+}
+
+.menu-icon{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 22px;
+    color: rgb(179, 179, 179);
+    display: none;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+
+@media (max-width: 1200px) {
+    .sidebar{
+        position: absolute;
+        transform: translateX(-100%);
+        transition: all ease .3s;
+        width: 300px;
+    }
+    .nav-elements{
+        justify-content: space-between;
+    }
+    .panel{
+        width: 100%;
+    }
+    .nav-left{
+        display: block;
+    }
+    .menu-icon{
+        display: block;
+    }
+}
