@@ -4,3 +4,58 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+@font-face {
+  font-family: 'Cabinet Grotesk';
+  src: local('Cabinet Grotesk'),
+       url('./assets/CabinetGrotesk_Complete/Fonts/CabinetGrotesk-Medium.otf') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cabinet Grotesk';
+  src: local('Cabinet Grotesk'),
+       url('./assets/CabinetGrotesk_Complete/Fonts/CabinetGrotesk-Bold.otf') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cabinet Grotesk';
+  src: local('Cabinet Grotesk'),
+       url('./assets/CabinetGrotesk_Complete/Fonts/CabinetGrotesk-Light.otf') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
+
+@font-face {
+  font-family: 'Ranade';
+  src: local('Cabinet Grotesk'),
+       url('./assets/Ranade_Complete/Fonts/Ranade-Medium.otf') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ranade';
+  src: local('Cabinet Grotesk'),
+       url('./assets/Ranade_Complete/Fonts/Ranade-Bold.otf') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Ranade';
+  src: local('Cabinet Grotesk'),
+       url('./assets/Ranade_Complete/Fonts/Ranade-Regular.otf') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}

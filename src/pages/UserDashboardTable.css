@@ -1,7 +1,5 @@
-/* Main Container */
 .user-dashboard {
   width: 100%;
-  padding: 1.5rem;
   background-color: white;
   border-radius: 0.5rem;
   display: flex;
@@ -9,27 +7,8 @@
   gap: 1rem;
 }
 
-@media (min-width: 640px) {
-  .user-dashboard {
-    padding: 1.5rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .user-dashboard {
-    gap: 1.5rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .user-dashboard {
-    padding: 2rem;
-  }
-}
-
-/* Header */
 .dashboard-title {
-  font-size: 1.5rem;
+  font-size: 1.9rem;
   font-weight: 700;
   margin-bottom: 1rem;
   color: #1f2937;
@@ -41,7 +20,6 @@
   }
 }
 
-/* Search Container */
 .search-container {
   margin-bottom: 1rem;
   position: relative;
@@ -93,7 +71,6 @@
   }
 }
 
-/* Table Styles */
 .table-responsive {
   overflow-x: auto;
 }
